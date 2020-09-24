@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
-COPY conf/nginx.conf /etc/nginx/
-COPY conf/laravel.conf /etc/nginx/sites-available/
+COPY ./conf/nginx.conf /etc/nginx/
+COPY ./conf/laravel.conf /etc/nginx/sites-available/
 
 RUN apk update \
     && apk upgrade \
