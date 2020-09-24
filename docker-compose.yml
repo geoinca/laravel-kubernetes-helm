@@ -26,7 +26,7 @@ services:
             dockerfile: Dockerfile.nginx
         container_name: laravel-nginx
         ports:
-            - "82:80"
+            - "80:80"
         links:
             - laravel_php_fpm
         volumes_from:
@@ -43,10 +43,35 @@ services:
             - "./docker/db:/docker-entrypoint-initdb.d"
             - "./docker/db/dbdata:/var/lib/mysql"
         environment:
-            - "MYSQL_DATABASE=homestead"
+            - "MYSQL_DATABASE=laravel"
             - "MYSQL_USER=homestead"
             - "MYSQL_PASSWORD=secret"
-            - "MYSQL_ROOT_PASSWORD=root"
+            - "MYSQL_ROOT_PASSWORD=rootpassword"
         ports:
-            - "33063:3306"
+            - "3306:3306"
         restart: always
+    # The phpmyadmin
+    phpmyadmin:
+        depends_on:
+                - laravel_database
+        image: phpmyadmin/phpmyadmin
+        #container_name: geoincaks.phpmyadmin
+        restart: always
+        ports:
+                - 3389:80
+        environment:
+                - "PMA_HOST=laravel_database"
+                - "MYSQL_ROOT_PASSWORD=rootpassword"
+
+    # The minio
+    minio:
+        image: geoincaks/lminio.minio
+        container_name: geoincaks.minio
+        ports:
+        - "9000:9000"
+        #volumes:
+        #  - storage:/data
+        environment:
+            - "MINIO_ACCESS_KEY=TCI4823FJXBK0206GOXX"
+            -  "MINIO_SECRET_KEY=xHC90qBeyZW04r+4bWf8gOn2pYGlFhfLzgcotBGn"
+        command: server /data                

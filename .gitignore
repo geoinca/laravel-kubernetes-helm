@@ -3,6 +3,8 @@
 # Git Ignore Config, https://git-scm.com/docs/gitignore.
 #
 #-------------------------------------------------------------------------------
+# repo cloned
+laravelminio
 
 # Laravel project 
 docker/laravel

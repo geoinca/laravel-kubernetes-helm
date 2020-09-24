@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Clean up existing docker data -For clean installation
+rm -rf laravelminio
 rm -rf docker/laravel
 rm -rf docker/db/dbdata
 
@@ -18,8 +19,9 @@ docker-compose down
 # OPTION 2
 # -------------------- #
 # OR clone your existing project
-#git clone http://gitlab.apnic.net/laravel/laravel-laravel.git laravel
-git clone --branch whitapache https://github.com/geoinca/laravelminio
+
+git clone https://github.com/geoinca/laravelminio.git 
+
 mv laravelminio/laravelminio docker/laravel
 
 # Checkout whitapache branch for local development purpose
@@ -52,3 +54,4 @@ docker-compose exec $APP_NAME php artisan optimize
 docker-compose exec $APP_NAME php artisan migrate
 
 docker-compose exec $APP_NAME vendor/bin/phpunit
+
