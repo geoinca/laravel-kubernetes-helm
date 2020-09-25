@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clean up existing docker data -For clean installation
-rm -rf laravelminio
+rm -rf laravel
 rm -rf docker/laravel
 rm -rf docker/db/dbdata
 
@@ -20,16 +20,16 @@ docker-compose down
 # -------------------- #
 # OR clone your existing project
 
-git clone https://github.com/geoinca/laravelminio.git 
+git clone https://github.com/geoinca/laravelminio.git laravel 
 
-mv laravelminio/laravelminio docker/laravel
+mv laravel/laravelminio docker/laravel
 
 # Checkout whitapache branch for local development purpose
-cd laravel
-git checkout whitapache
+#cd laravel
+#git checkout whitapache
 #cd ..
 # -------------------- #
-
+cp .env docker/laravel
 # Create image
 docker-compose up --build -d
 
@@ -51,7 +51,15 @@ sleep 3
 
 docker-compose exec $APP_NAME php artisan optimize
 
-docker-compose exec $APP_NAME php artisan migrate
+docker-compose exec $APP_NAME php artisan migrate:refresh --seed
 
 docker-compose exec $APP_NAME vendor/bin/phpunit
+
+
+# Folder Permissions
+docker-compose exec $APP_NAME chmod 777 -R /var/www/laravel/storage/logs/
+
+docker-compose exec $APP_NAME chmod 777 -R /var/www/laravel/storage/framework/sessions
+
+docker-compose exec $APP_NAME chmod 777 -R /var/www/laravel/storage/framework/views
 

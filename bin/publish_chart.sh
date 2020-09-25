@@ -25,8 +25,6 @@ echo "Waiting for update to complete, this may take a couple of minutes...";
 helm upgrade \
     --force \
     --kube-context="${ENV_CHART_NAME}" \
-   
-   
     --values "${DIR_ROOT}/chart/values.yaml" \
     --set image.tag="${VERSION_NUMBER}" \
     --set database.password="laravel_password" \
