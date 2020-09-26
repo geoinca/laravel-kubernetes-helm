@@ -55,7 +55,7 @@ services:
         depends_on:
                 - laravel_database
         image: phpmyadmin/phpmyadmin
-        #container_name: geoincaks.phpmyadmin
+        container_name: laravel-phpmyadmin
         restart: always
         ports:
                 - 3389:80
@@ -66,7 +66,7 @@ services:
     # The minio
     minio:
         image: geoincaks/lminio.minio
-        container_name: geoincaks.minio
+        container_name: laravel-minio
         ports:
         - "9000:9000"
         #volumes:

@@ -15,16 +15,15 @@ export ENVIRONMENT_TEST="tst";
 # production one based on the current branch. The replica set used in the
 # previous release will stick around after the release has been completed, this
 # is a known bug.
-#
+# --kube-context="${ENV_CHART_NAME}" \
 
 
-ENV_CHART_NAME="laravel";
+ENV_CHART_NAME="default";
 VERSION_NUMBER="0.1.0"
 
 echo "Waiting for update to complete, this may take a couple of minutes...";
 helm upgrade \
     --force \
-    --kube-context="${ENV_CHART_NAME}" \
     --values "${DIR_ROOT}/chart/values.yaml" \
     --set image.tag="${VERSION_NUMBER}" \
     --set database.password="laravel_password" \

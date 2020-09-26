@@ -5,15 +5,15 @@
 replicaCount: 1
 
 image:
-  repository: geoincaks/dockerfile.nginx
+  repository: geoincaks/laravel-application
   tag: 0.1.0
   pullPolicy: IfNotPresent
 
 database:
   host: mariadb-mariadb.db
   # User could not be the same as db name due to a max length issue.
-  user: laravel_user
-  password: "" # Defined at apply time.
+  user: homestead
+  password: "secret" # Defined at apply time.
   name: laravel_tst
 
 nginxService:

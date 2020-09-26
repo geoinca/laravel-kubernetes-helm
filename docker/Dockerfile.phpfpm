@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4-fpm
 
 ENV WORKDIR=/var/www/laravel \
     NODE_VERSION=8.11.1
@@ -62,7 +62,7 @@ RUN curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE
 
 # Set your timezone here
 RUN rm /etc/localtime
-RUN ln -s /usr/share/zoneinfo/Australia/Brisbane /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 RUN "date"
 
 # Clean
