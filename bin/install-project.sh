@@ -23,13 +23,14 @@ docker-compose down
 git clone https://github.com/geoinca/laravelminio.git laravel 
 
 mv laravel/laravelminio docker/laravel
-
+echo "git done"
 # Checkout whitapache branch for local development purpose
 #cd laravel
 #git checkout whitapache
 #cd ..
 # -------------------- #
 cp .env docker/laravel
+echo "env done"
 # Create image
 docker-compose up --build -d
 
