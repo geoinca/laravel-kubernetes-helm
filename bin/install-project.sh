@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Clean up existing docker data -For clean installation
+docker-compose down
+
 rm -rf laravel
 rm -rf docker/laravel
 rm -rf docker/db/dbdata
@@ -21,19 +23,19 @@ docker-compose down
 # OR clone your existing project
 
 git clone https://github.com/geoinca/laravelminio.git laravel 
-
-mv laravel/laravelminio docker/laravel
 echo "git done"
+mv laravel  docker/laravel
+echo "laravel mode"
 # Checkout whitapache branch for local development purpose
 #cd laravel
 #git checkout whitapache
 #cd ..
 # -------------------- #
 cp .env docker/laravel
-echo "env done"
+echo "cp env done"
 # Create image
 docker-compose up --build -d
-
+echo "docker-compose up done"
 # Perform series of action in container
 APP_NAME="laravel_php_fpm"
 
