@@ -10,7 +10,7 @@ Before you begin, please ensure [Docker](https://www.docker.com/), [Docker Compo
 
 **Step 1:**
 
-Clone this project `git clone https://github.com/dambergautam/laravel-kubernetes-helm.git`.
+Clone this project `git clone https://github.com/geoinca/laravel-kubernetes-helm.git`.
 
 **Step 2:**
 
