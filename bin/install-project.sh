@@ -37,7 +37,7 @@ echo "cp env done"
 docker-compose up --build -d
 echo "docker-compose up done"
 # Perform series of action in container
-APP_NAME="laravel_php_fpm"
+APP_NAME="laravel-phpfpm"
 
 docker-compose exec $APP_NAME composer install
 

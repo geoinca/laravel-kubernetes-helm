@@ -2,7 +2,7 @@ version: '2'
 
 services:
     # Laravel application
-    laravel_php_fpm:
+    laravel-phpfpm:
         build: 
             context: ./docker
             dockerfile: "Dockerfile.phpfpm"
@@ -10,14 +10,14 @@ services:
         volumes:
             - ./docker/laravel:/var/www/laravel
         links:
-            - laravel_database
+            - laravel-database
         ports:
             - 9010:9000
         depends_on:
-            - laravel_database
+            - laravel-database
         environment:
             - DB_PORT=3306
-            - DB_HOST=laravel_database
+            - DB_HOST=laravel-database
 
     # Webserver
     nginx:
@@ -28,17 +28,17 @@ services:
         ports:
             - "80:80"
         links:
-            - laravel_php_fpm
+            - laravel-phpfpm
         volumes_from:
-            - laravel_php_fpm
+            - laravel-phpfpm
         volumes:
             - ./docker/logs/nginx/:/var/log/nginx
         restart: always
 
     # The Database
-    laravel_database:
+    laravel-database:
         image: mariadb:10.2
-        container_name: laravel-mysql
+        container_name: laravel-database
         volumes:
             - "./docker/db:/docker-entrypoint-initdb.d"
             - "./docker/db/dbdata:/var/lib/mysql"
@@ -53,14 +53,14 @@ services:
     # The phpmyadmin
     phpmyadmin:
         depends_on:
-                - laravel_database
+                - laravel-database
         image: phpmyadmin/phpmyadmin
         container_name: laravel-phpmyadmin
         restart: always
         ports:
                 - 3389:80
         environment:
-                - "PMA_HOST=laravel_database"
+                - "PMA_HOST=laravel-database"
                 - "MYSQL_ROOT_PASSWORD=rootpassword"
 
     # The minio
