@@ -38,7 +38,7 @@ Let's say `geoincaks` is our docker repository -
 
 ```
 # Create new image
-docker build -t geoincaks/laravel-application:0.1.0 ./docker/Dockerfile.phpfpm  
+docker build -t geoincaks/laravel-application:0.1.0 -f ./Dockerfile.phpfpm .  
 
 # You might have to login to push image in docker repository.
 docker login geoincaks
@@ -50,8 +50,8 @@ docker push geoincaks/laravel-application:0.1.0
 Create Nginx image
 
 ```
-docker build -t acr2.tst.apnic.net/webops/fellowship-nginx:0.0.3 ./docker/Dockerfile.nginx
-docker push acr2.tst.apnic.net/webops/fellowship-nginx:0.0.3
+docker build -t geoincaks/fellowship-nginx:0.1.0 -f ./Dockerfile.nginx .
+docker push geoincaks/fellowship-nginx:0.1.0
 ```
 
 Now, that you have all required images in docker repository, you can install/update
