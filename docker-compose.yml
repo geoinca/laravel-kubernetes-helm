@@ -66,12 +66,12 @@ services:
     # The minio
     minio:
         image: geoincaks/lminio.minio
-        container_name: laravel-minio
+        container_name: argo-artifacts
         ports:
         - "9000:9000"
         #volumes:
         #  - storage:/data
         environment:
-            - "MINIO_ACCESS_KEY=TCI4823FJXBK0206GOXX"
-            -  "MINIO_SECRET_KEY=xHC90qBeyZW04r+4bWf8gOn2pYGlFhfLzgcotBGn"
+            - "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE"
+            -  "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
         command: server /data                
